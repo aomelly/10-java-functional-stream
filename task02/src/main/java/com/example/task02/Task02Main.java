@@ -16,7 +16,12 @@ public class Task02Main {
 
     public static IntStream cycleGrayCode(int n) {
 
-        return null; // your implementation here
+        if (n < 1 || n > 16) {
+            throw new IllegalArgumentException("n must be between 1 and 16");
+        }
+        int period = 1 << n;
+        return IntStream.iterate(0, index -> (index + 1) % period)
+                .map(index -> index ^ (index >>> 1));
 
     }
 
